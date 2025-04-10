@@ -54,17 +54,10 @@ classdef data_process < dynamicprops
                     obj.experiments.(exp_name) = struct;
                 end
                 if isfield(obj.experiments.(exp_name), data_name)
-                    inp = input('The data structure is existing, do you want to override? Type 0 for No, 1 for Yes: \n');
-                    if inp 
-                        obj.experiments.(exp_name).(data_name) = struct('data_path', {1}, 'data_content', [1]);
-                        obj.experiments.(exp_name).(data_name).data_path = {};
-                        obj.experiments.(exp_name).(data_name).data_content = {};
-                    end
-                else
-                    obj.experiments.(exp_name).(data_name) = struct('data_path', {1}, 'data_content', [1]);
-                    obj.experiments.(exp_name).(data_name).data_path = {};
-                    obj.experiments.(exp_name).(data_name).data_content = {};
-                end
+                    inp = input()
+                obj.experiments.(exp_name).(data_name) = struct('data_path', {1}, 'data_content', [1]);
+                obj.experiments.(exp_name).(data_name).data_path = {};
+                obj.experiments.(exp_name).(data_name).data_content = {};
             elseif nargin == 4
                 assert(isa(exp_name, 'string') + isa(exp_name, 'char'));
                 assert(isa(data_name, 'string') + isa(data_name, 'char'));
@@ -103,7 +96,7 @@ classdef data_process < dynamicprops
                     obj.append_one_path(data_paths, exp, dat);
                     return
                 else
-                    warning("The following path does not exist: %s ..... skipping it ... \n", data_paths);
+                    warning("The following path does not exist: %s ..... skipping it ... \n", pathi);
                     return
                 end
             else 
